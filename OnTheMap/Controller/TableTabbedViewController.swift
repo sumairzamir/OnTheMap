@@ -2,7 +2,7 @@
 //  TableTabbedViewController.swift
 //  OnTheMap
 //
-//  Created by Aiman Nabeel on 31/03/2020.
+//  Created by Sumair Zamir on 31/03/2020.
 //  Copyright © 2020 Sumair Zamir. All rights reserved.
 //
 
@@ -12,6 +12,14 @@ class TableTabbedViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        _ = NetworkLogic.requestStudentLocation(completionHandler: { (locations, error) in
+            StudentLocations.studentLocations = locations
+            DispatchQueue.main.async {
+                print(StudentLocations.studentLocations.count)
+                self.tableView.reloadData()
+            }
+        })
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -24,23 +32,45 @@ class TableTabbedViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return StudentLocations.studentLocations.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TableTabbedViewCell", for: indexPath) as! TableTabbedViewCell
 
         // Configure the cell...
+        
+        let location = StudentLocations.studentLocations[indexPath.row]
+        
+        cell.studentNameLabel?.text = "\(location.firstName) \(location.lastName)"
+        cell.mediaURLLabel?.text = "\(location.mediaURL)"
 
         return cell
     }
-    */
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+     
+        let location = StudentLocations.studentLocations[indexPath.row]
+        
+        let studentURL = URL(string: location.mediaURL)
+        
+        // Manage nil
+        if studentURL != nil {
+            UIApplication.shared.open(studentURL!)
+        }
+            else {
+                return
+            }
+        
+    }
+    
+    
 
     /*
     // Override to support conditional editing of the table view.

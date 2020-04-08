@@ -111,7 +111,6 @@
 				885533F42433E80B0077DCAB /* LoginViewController.swift */,
 				885534082433EB8A0077DCAB /* MapViewController.swift */,
 				8855340E2433EC3E0077DCAB /* TableTabbedViewController.swift */,
-				885534102433EC510077DCAB /* TableTabbedViewCell.swift */,
 				8855340C2433EBAA0077DCAB /* InformationPostingViewController.swift */,
 				88DEDF7B243B464B001A3001 /* ConfirmPostingViewController.swift */,
 			);
@@ -138,6 +137,7 @@
 			children = (
 				88976A6A24350C4800EAA33F /* LoginSignupTextView.swift */,
 				88976A6C2436A5CD00EAA33F /* ButtonParameters.swift */,
+				885534102433EC510077DCAB /* TableTabbedViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

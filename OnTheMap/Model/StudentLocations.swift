@@ -8,6 +8,12 @@
 
 import Foundation
 
+// This class creates an instance of the Locations struct. This struct all the requried information used in the MapView and TableView controllers.
+
 class StudentLocations {
+    
+    // Specifying () after the struct creates an instance.
+    
     static var studentLocations = [Locations]()
+    
 }

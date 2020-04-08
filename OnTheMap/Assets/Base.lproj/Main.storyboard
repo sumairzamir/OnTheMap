@@ -155,7 +155,11 @@
                                     <segue destination="cp0-Uh-EFP" kind="presentation" modalPresentationStyle="fullScreen" id="4bA-vH-Gpo"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="arrow.clockwise" catalog="system" id="3X9-eR-j1K"/>
+                            <barButtonItem image="arrow.clockwise" catalog="system" id="3X9-eR-j1K">
+                                <connections>
+                                    <action selector="refreshButtonAction:" destination="LKc-tB-u50" id="ZXk-Cn-c0B"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -244,14 +248,22 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="On The Map" id="S0s-XQ-o4b">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="rYe-2r-XQS"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="rYe-2r-XQS">
+                            <connections>
+                                <action selector="logoutTapped:" destination="RmJ-ZI-qqL" id="6xD-IJ-WVE"/>
+                            </connections>
+                        </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem image="plus" catalog="system" id="aLT-wp-mRf" userLabel="Information Posting Button">
                                 <connections>
                                     <segue destination="cp0-Uh-EFP" kind="presentation" modalPresentationStyle="fullScreen" id="vZA-FT-P48"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem image="arrow.clockwise" catalog="system" id="Wvt-jK-KYu" userLabel="Refresh Button"/>
+                            <barButtonItem image="arrow.clockwise" catalog="system" id="Wvt-jK-KYu" userLabel="Refresh Button">
+                                <connections>
+                                    <action selector="refreshButtonAction:" destination="RmJ-ZI-qqL" id="fGd-e2-zey"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                 </tableViewController>
@@ -400,7 +412,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4bA-vH-Gpo"/>
+        <segue reference="vZA-FT-P48"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="PinIcon" width="512" height="512"/>

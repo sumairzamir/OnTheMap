@@ -8,22 +8,27 @@
 
 import UIKit
 
+// This class calls specific elements defined in the TableViewCell. These are called in the TableView controller.
+
 class TableTabbedViewCell: UITableViewCell {
 
+    // MARK:- IBOutlets
+    
+    // These are called in the TableView controller.
     
     @IBOutlet weak var studentNameLabel: UILabel!
     @IBOutlet weak var mediaURLLabel: UILabel!
     
+    // MARK: - View methods
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
- //   }
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
     }
 
 }

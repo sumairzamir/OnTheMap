@@ -8,7 +8,14 @@
 
 import Foundation
 
+// These structs map the response from the network on login request.
+// The response is received in a JSON format, and therefore the Codable protocol is specified.
+
 struct SessionResponse: Codable {
+    
+    // The JSON response includes keys within keys, i.e. the account key includes a registered and key "key".
+    // To map nested keys, the type specified should refer to new structs as below.
+    
     let account: Account
     let session: Session
 
@@ -25,4 +32,3 @@ struct Session: Codable {
     let expiration: String
 
 }
-

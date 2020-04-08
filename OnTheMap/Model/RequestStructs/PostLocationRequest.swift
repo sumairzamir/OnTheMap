@@ -1,5 +1,5 @@
 //
-//  LocationResponse.swift
+//  PostLocationRequest.swift
 //  OnTheMap
 //
 //  Created by Sumair Zamir on 05/04/2020.
@@ -8,19 +8,16 @@
 
 import Foundation
 
-struct LocationResponse: Codable {
-    let results: [Locations]
-}
+// This structs maps the request to the network on posting a new user location.
+// The request is sent in a JSON format, and therefore the Codable protocol is specified.
 
-struct Locations: Codable {
-    let createdAt: String
+struct PostLocationRequest: Codable {
     let firstName: String
     let lastName: String
     let latitude: Double
     let longitude: Double
     let mapString: String
     let mediaURL: String
-    let objectId: String
     let uniqueKey: String
-    let updatedAt: String
+    
 }

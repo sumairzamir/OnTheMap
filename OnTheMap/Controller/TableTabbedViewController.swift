@@ -8,45 +8,91 @@
 
 import UIKit
 
-class TableTabbedViewController: UITableViewController {
+// This class populates student coordinate information on to a table view.
 
+class TableTabbedViewController: UITableViewController {
+    
+    // MARK:- View methods
+
+    // The GET request is in viewWillAppear so that it is refreshed whenever the view appears, rather than loads.
+    // The view remains loaded in the stack as the posting views are presented modally.
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Run the GET request for the student locations.
+        
+        NetworkGetRequests.requestStudentLocation(completionHandler: handleStudentLocationResponse(success:location:error:))
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+    }
+
+    // MARK: - IBActions
+    
+    @IBAction func refreshButtonAction(_ sender: Any) {
         
-        _ = NetworkLogic.requestStudentLocation(completionHandler: { (locations, error) in
-            StudentLocations.studentLocations = locations
-            DispatchQueue.main.async {
-                print(StudentLocations.studentLocations.count)
-                self.tableView.reloadData()
-            }
-        })
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        // Refresh the mapView by requesting the GET request again.
+        
+        NetworkGetRequests.requestStudentLocation(completionHandler: handleStudentLocationResponse(success:location:error:))
+        
+    }
+    
+    // MARK: Response handling
+    // This method handles the completionHandler from the GET request.
+    
+    func handleStudentLocationResponse(success: Bool, location: [Locations], error: Error?) {
+        
+        // If the GET request is successful, the student locations are saved to the struct and the table view is reloaded. See table view methods for further information.
+        
+        if success {
+            
+            StudentLocations.studentLocations = location
+            
+            self.tableView.reloadData()
+            
+        } else {
+            
+            // If an error occurs on the GET request. An AlertViewController is presented.
+            // A customised error is passed through the network logic.
+            
+            self.showNetworkLogicFailure(title: "Retrieving information failed", message: error?.localizedDescription ?? "")
+            
+        }
+        
     }
 
-    // MARK: - Table view data source
-
+    // MARK:- TableView methods
+    
+    // This method defines the number of sections in the table view.
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
+        
     }
 
+    // This method defines the number of rows in the table view. This will be equivalent to the number of student locations pulled from the network. This is by default equal to 100.
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return StudentLocations.studentLocations.count
+        
     }
 
+    // This method defines the composition of the cells in each row.
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        // Define the cell as detailed in the TableTabbedViewCell class.
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableTabbedViewCell", for: indexPath) as! TableTabbedViewCell
 
-        // Configure the cell...
+        // Extract information from the StudentLocations struct.
         
         let location = StudentLocations.studentLocations[indexPath.row]
+        
+        // Define what is shown in the cell.
         
         cell.studentNameLabel?.text = "\(location.firstName) \(location.lastName)"
         cell.mediaURLLabel?.text = "\(location.mediaURL)"
@@ -54,67 +100,48 @@ class TableTabbedViewController: UITableViewController {
         return cell
     }
     
+    // This method defines the action on when a specific cell is tapped.
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // Extract information from the StudentLocations struct.
      
         let location = StudentLocations.studentLocations[indexPath.row]
         
+        // Define the URL extracted and open it in the browser.
+        
         let studentURL = URL(string: location.mediaURL)
         
-        // Manage nil
+        // If the studentURL specified is nil, no action is called.
+        
         if studentURL != nil {
             UIApplication.shared.open(studentURL!)
+            
         }
             else {
                 return
+            
             }
         
     }
     
+    // This method ends the current session and logs the user out.
     
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    @IBAction func logoutTapped(_ sender: Any) {
+        NetworkDeleteRequests.logout {
+                self.dismiss(animated: true, completion: nil)
+            
+        }
+        
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    // MARK:- Alertview
+    // Alert view pop-up if there is an error received on the GET request.
+    
+    func showNetworkLogicFailure(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

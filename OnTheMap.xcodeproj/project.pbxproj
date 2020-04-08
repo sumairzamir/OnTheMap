@@ -21,6 +21,7 @@
 		885E0995243CB53F00AE2B5C /* NetworkPostRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885E0994243CB53F00AE2B5C /* NetworkPostRequests.swift */; };
 		885E0997243CB55100AE2B5C /* NetworkDeleteRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885E0996243CB55100AE2B5C /* NetworkDeleteRequests.swift */; };
 		885E099C243CD04500AE2B5C /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885E099B243CD04500AE2B5C /* ErrorResponse.swift */; };
+		885E09A7243E47FD00AE2B5C /* AlertViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 885E09A6243E47FD00AE2B5C /* AlertViewExtension.swift */; };
 		88976A6B24350C4800EAA33F /* LoginSignupTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88976A6A24350C4800EAA33F /* LoginSignupTextView.swift */; };
 		88976A6D2436A5CD00EAA33F /* ButtonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88976A6C2436A5CD00EAA33F /* ButtonParameters.swift */; };
 		88976A6F2436A7A600EAA33F /* NetworkParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88976A6E2436A7A600EAA33F /* NetworkParameters.swift */; };
@@ -51,6 +52,7 @@
 		885E0994243CB53F00AE2B5C /* NetworkPostRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPostRequests.swift; sourceTree = "<group>"; };
 		885E0996243CB55100AE2B5C /* NetworkDeleteRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDeleteRequests.swift; sourceTree = "<group>"; };
 		885E099B243CD04500AE2B5C /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		885E09A6243E47FD00AE2B5C /* AlertViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewExtension.swift; sourceTree = "<group>"; };
 		88976A6A24350C4800EAA33F /* LoginSignupTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupTextView.swift; sourceTree = "<group>"; };
 		88976A6C2436A5CD00EAA33F /* ButtonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonParameters.swift; sourceTree = "<group>"; };
 		88976A6E2436A7A600EAA33F /* NetworkParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkParameters.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				88976A6A24350C4800EAA33F /* LoginSignupTextView.swift */,
 				88976A6C2436A5CD00EAA33F /* ButtonParameters.swift */,
 				885534102433EC510077DCAB /* TableTabbedViewCell.swift */,
+				885E09A6243E47FD00AE2B5C /* AlertViewExtension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				88B1E8B52439F52400013A2B /* PostLocationRequest.swift in Sources */,
 				88976A722438982300EAA33F /* SessionRequest.swift in Sources */,
 				885E0995243CB53F00AE2B5C /* NetworkPostRequests.swift in Sources */,
+				885E09A7243E47FD00AE2B5C /* AlertViewExtension.swift in Sources */,
 				88976A752438A3AF00EAA33F /* SessionResponse.swift in Sources */,
 				885533F52433E80B0077DCAB /* LoginViewController.swift in Sources */,
 				88DE9367243B808D0068E113 /* UserInformationResponse.swift in Sources */,

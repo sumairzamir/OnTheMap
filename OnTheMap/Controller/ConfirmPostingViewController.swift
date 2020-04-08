@@ -100,7 +100,7 @@ class ConfirmPostingViewController: UIViewController, MKMapViewDelegate {
             // If the GET request failed, this error is managed by the AlertView here.
             // This error message here is customised as a network error.
             
-            self.showNetworkLogicFailure(title: "Network error", message: error?.localizedDescription ?? "")
+            self.showLogicFailure(title: "Network error", message: error?.localizedDescription ?? "")
             
         }
         
@@ -121,19 +121,9 @@ class ConfirmPostingViewController: UIViewController, MKMapViewDelegate {
             // If the POST request fails, an AlertView is shown.
             // The error here is customised as a posting error.
             
-            self.showNetworkLogicFailure(title: "Post error", message: error?.localizedDescription ?? "")
+            self.showLogicFailure(title: "Post error", message: error?.localizedDescription ?? "")
             
         }
-        
-    }
-    
-    // MARK: - Alertview
-    // Alert view pop-up if there is an error received on the network requests.
-    
-    func showNetworkLogicFailure(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
         
     }
 

@@ -25,7 +25,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     // The view remains loaded in the stack as the posting views are presented modally.
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
+
         //  let location = CLLocationCoordinate2D(latitude: InformationPostingViewController.LocationCoordinates.latitude, longitude: InformationPostingViewController.LocationCoordinates.longitude)
         //  mapView.setCenter(location, animated: true)
         
@@ -127,7 +128,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             // If an error occurs on the GET request. An AlertViewController is presented.
             // A customised error is passed through the network logic.
             
-            self.showNetworkLogicFailure(title: "Retrieving information failed", message: error?.localizedDescription ?? "")
+            showLogicFailure(title: "Retrieving information failed", message: error?.localizedDescription ?? "")
             
         }
         
@@ -180,16 +181,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 self.dismiss(animated: true, completion: nil)
             
         }
-        
-    }
-    
-    // MARK: - Alertview
-    // Alert view pop-up if there is an error received on the GET request.
-    
-    func showNetworkLogicFailure(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
         
     }
     

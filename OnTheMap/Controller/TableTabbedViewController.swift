@@ -18,16 +18,11 @@ class TableTabbedViewController: UITableViewController {
     // The view remains loaded in the stack as the posting views are presented modally.
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
         // Run the GET request for the student locations.
         
         NetworkGetRequests.requestStudentLocation(completionHandler: handleStudentLocationResponse(success:location:error:))
         
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
     }
 
     // MARK: - IBActions
@@ -58,7 +53,7 @@ class TableTabbedViewController: UITableViewController {
             // If an error occurs on the GET request. An AlertViewController is presented.
             // A customised error is passed through the network logic.
             
-            self.showNetworkLogicFailure(title: "Retrieving information failed", message: error?.localizedDescription ?? "")
+            showLogicFailure(title: "Retrieving information failed", message: error?.localizedDescription ?? "")
             
         }
         
@@ -133,15 +128,6 @@ class TableTabbedViewController: UITableViewController {
             
         }
         
-    }
-    
-    // MARK:- Alertview
-    // Alert view pop-up if there is an error received on the GET request.
-    
-    func showNetworkLogicFailure(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
     }
     
 }

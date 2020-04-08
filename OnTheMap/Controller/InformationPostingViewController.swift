@@ -22,13 +22,6 @@ class InformationPostingViewController: UIViewController {
     @IBOutlet weak var findLocationButton: ButtonParameters!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
-    // MARK:- View methods
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     // MARK:- IBActions
     
     // This method dismisses the information entry controller.
@@ -88,7 +81,7 @@ class InformationPostingViewController: UIViewController {
                     
                     // If the geocode fails an Alert View is presented to the user.
                     
-                    self.showGeoCodeFailure(title: "Unable to find location", message: ErrorResponse.geocodeError.localizedDescription)
+                    self.showLogicFailure(title: "Unable to find location", message: ErrorResponse.geocodeError.localizedDescription)
                     
                     // The UI elements are re-enabled and activity indicator stops animating.
                     
@@ -108,16 +101,6 @@ class InformationPostingViewController: UIViewController {
             completionHandler()
             
         }
-        
-    }
-    
-    // MARK: - Alertview
-    // Alert view pop-up if there is an error received on the GET request.
-    
-    func showGeoCodeFailure(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
         
     }
     

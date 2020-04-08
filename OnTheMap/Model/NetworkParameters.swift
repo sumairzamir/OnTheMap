@@ -74,7 +74,7 @@ class NetworkParameters {
             case .session:
                 return EndPoints.base + "session"
             case .getLocation:
-                return EndPoints.base + "StudentLocation" + "?order=\(EndPoints.order)"
+                return EndPoints.base + "StudentLocation" + "?order=\(EndPoints.order)" + "&limit=\(EndPoints.limit)"
             case .postLocation:
                 return EndPoints.base + "StudentLocation"
             case .userInformation:

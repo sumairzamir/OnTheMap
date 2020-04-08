@@ -19,13 +19,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: ButtonParameters!
     @IBOutlet weak var loginActivityIndicator: UIActivityIndicatorView!
     
-    // MARK:- View methods
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
-    
     // MARK:- IBActions
     
     @IBAction func loginTapped(_ sender: Any) {
@@ -61,7 +54,9 @@ class LoginViewController: UIViewController {
             // If an error occurs on login. An AlertViewController is presented.
             // A customised error is passed through the network logic.
             
-            showNetworkLogicFailure(title: "Login failed", message: error?.localizedDescription ?? "")
+            // This method is called from the AlertView extension class.
+            
+            showLogicFailure(title: "Login failed", message: error?.localizedDescription ?? "")
             
         }
         
@@ -91,15 +86,7 @@ class LoginViewController: UIViewController {
         
     }
     
-    // MARK: - Alertview
-    // Alert view pop-up if there is an error received on login request.
-    
-    func showNetworkLogicFailure(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-        
-    }
-    
 }
+
+
 

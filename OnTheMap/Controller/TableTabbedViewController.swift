@@ -29,7 +29,7 @@ class TableTabbedViewController: UITableViewController {
     
     @IBAction func refreshButtonAction(_ sender: Any) {
         
-        // Refresh the mapView by requesting the GET request again.
+        // Refresh the TableView by requesting the GET request again.
         
         NetworkGetRequests.requestStudentLocation(completionHandler: handleStudentLocationResponse(success:location:error:))
         
